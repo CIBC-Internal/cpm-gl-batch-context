@@ -7,7 +7,7 @@ endif()
 project(GLContextTest)
 
 #------------------------------------------------------------------------------
-# Required CPM Setup - See: http://github.com/iauns/cpm
+# Required CPM Setup - See: http://github.com/CIBC-Internal/cpm
 #------------------------------------------------------------------------------
 set(CPM_DIR "${CMAKE_CURRENT_BINARY_DIR}/cpm-packages" CACHE TYPE STRING)
 find_package(Git)
@@ -18,15 +18,15 @@ if ((NOT DEFINED CPM_MODULE_CACHE_DIR) AND (NOT "$ENV{CPM_CACHE_DIR}" STREQUAL "
   set(CPM_MODULE_CACHE_DIR "$ENV{CPM_CACHE_DIR}")
 endif()
 if ((NOT EXISTS ${CPM_DIR}/CPM.cmake) AND (DEFINED CPM_MODULE_CACHE_DIR))
-  if (EXISTS "${CPM_MODULE_CACHE_DIR}/github_iauns_cpm")
+  if (EXISTS "${CPM_MODULE_CACHE_DIR}/github_cibcinternal_cpm")
     message(STATUS "Found cached version of CPM.")
-    file(COPY "${CPM_MODULE_CACHE_DIR}/github_iauns_cpm/" DESTINATION ${CPM_DIR})
+    file(COPY "${CPM_MODULE_CACHE_DIR}/github_cibcinternal_cpm/" DESTINATION ${CPM_DIR})
   endif()
 endif()
 if (NOT EXISTS ${CPM_DIR}/CPM.cmake)
-  message(STATUS "Cloning repo (https://github.com/iauns/cpm)")
+  message(STATUS "Cloning repo (https://github.com/CIBC-Internal/cpm)")
   execute_process(
-    COMMAND "${GIT_EXECUTABLE}" clone https://github.com/iauns/cpm ${CPM_DIR}
+    COMMAND "${GIT_EXECUTABLE}" clone https://github.com/CIBC-Internal/cpm ${CPM_DIR}
     RESULT_VARIABLE error_code
     OUTPUT_QUIET ERROR_QUIET)
   if(error_code)
@@ -39,7 +39,7 @@ CPM_AddModule("gl_context" SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/..")
 
 # ++ MODULE: GL Platform
 CPM_AddModule("gl_platform"
-  GIT_REPOSITORY "https://github.com/iauns/cpm-gl-platform.git"
+  GIT_REPOSITORY "https://github.com/CIBC-Internal/cpm-gl-platform.git"
   GIT_TAG "1.3.5"
   USE_EXISTING_VER TRUE
   EXPORT_MODULE TRUE)
