@@ -37,7 +37,7 @@ if (WIN32)
   # We need GLEW, and we might as well get the platform headers as well.
   CPM_AddModule("gl_platform"
     GIT_REPOSITORY "https://github.com/CIBC-Internal/cpm-gl-platform"
-    GIT_TAG "1.3.5"
+    GIT_TAG "origin/master"
     USE_EXISTING_VER TRUE)
 endif()
 
